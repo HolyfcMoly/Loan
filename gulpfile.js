@@ -6,8 +6,8 @@ const browsersync = require("browser-sync");
 const sass = require("gulp-sass")(require('sass'));
 const rename = require('gulp-rename');
 
-const dist = "./dist/";
-// const dist = '/OSPanel/domains/Picture'
+// const dist = "./dist/";
+const dist = '/OSPanel/domains/Loan'
 
 gulp.task("copy-html", () => {
 		return gulp

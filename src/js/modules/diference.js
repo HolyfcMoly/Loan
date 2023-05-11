@@ -12,9 +12,11 @@ export default class Diference {
         container.querySelector('.card__click').addEventListener('click', () => {
             if (counter !== items.length - 2) {
                 items[counter].style.display = 'flex';
+                items[counter].classList.add("animated", 'fadeIn')
                 counter++
             } else {
                 items[counter].style.display = 'flex';
+                items[counter].classList.add("animated", 'fadeIn')
                 items[items.length - 1].remove()
             }
         })

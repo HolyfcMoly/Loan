@@ -105,21 +105,13 @@ export default class Form {
                 e.preventDefault();
 
                 let statusMessage = document.createElement("div");
-                statusMessage.style.cssText = `
-                    margin: 0 auto;
-                    margin-top: 15px;
-                    padding: 20px 30px;
-                    max-width: 50%;
-                    background-color: #fff;
-                    box-shadow: 0px -10px 20px rgba(0,0,0,.05);
-                    text-align: center;
-                    font-size: 18px;
-                    color: grey;
-                `
+                statusMessage.classList.add('modal-info')
+                statusMessage.classList.add('animated', 'fadeInUp')            
                 item.parentNode.appendChild(statusMessage);
 
                 let statusImg = document.createElement('img')
                 statusImg.setAttribute('src', this.message.spinner)
+                statusImg.classList.add('modal-img')
                 statusImg.classList.add('animated', 'fadeInUp')
                 statusMessage.appendChild(statusImg)
 
@@ -127,24 +119,29 @@ export default class Form {
                 textMessage.textContent = this.message.loading
                 statusMessage.appendChild(textMessage)
 
-
                 const formData = new FormData(item)
 
                 this.postData(this.path, formData)
                     .then(res => {
                         console.log(res)
-                        statusImg.setAttribute('src', this.message.ok)
                         statusMessage.textContent = this.message.success
+                        statusImg.setAttribute('src', this.message.ok)
+                        statusMessage.appendChild(statusImg)
                     })
                     .catch(() => {
-                        statusImg.setAttribute('src', this.message.fail)
                         statusMessage.textContent = this.message.failure;
+                        statusImg.setAttribute('src', this.message.fail)
+                        statusMessage.appendChild(statusImg)
                     })
                     .finally(() => {
                         this.clearInputs()
                         setTimeout(() => {
-                            statusMessage.remove()
-                        }, 80000)
+                            statusMessage.classList.remove('fadeInUp')
+                            statusMessage.classList.add('fadeOutDown')
+                            setTimeout(() => {
+                                statusMessage.remove()
+                            }, 1000)
+                        }, 4000)
                     })
             })
         })

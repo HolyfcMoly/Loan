@@ -7,12 +7,12 @@ export default class MiniSlider extends Slider {
 
     decorizeSlides() {
         this.slides.forEach((slide) => {
-                slide.classList.remove(this.activeClass);
-                if (this.animate) {
-                    slide.querySelector(".card__title").style.opacity = "0.4";
-                    slide.querySelector(".card__controls-arrow").style.opacity =
-                        "0";
-                }
+            slide.classList.remove(this.activeClass);
+            if (this.animate) {
+                slide.querySelector(".card__title").style.opacity = "0.4";
+                slide.querySelector(".card__controls-arrow").style.opacity =
+                    "0";
+            }
         });
 
         this.slides[0].classList.add(this.activeClass);
@@ -26,15 +26,18 @@ export default class MiniSlider extends Slider {
     }
 
     nextSlide() {
-            this.container.appendChild(this.slides[0])
-            this.slides.push(this.slides.shift())
-            this.decorizeSlides();  
+        this.container.appendChild(this.slides[0]);
+        this.slides.push(this.slides.shift());
+        this.decorizeSlides();
     }
 
     prevSlide() {
-            this.container.insertBefore(this.slides[this.slides.length - 1], this.slides[0])
-            this.slides.unshift(this.slides.pop())
-            this.decorizeSlides();
+        this.container.insertBefore(
+            this.slides[this.slides.length - 1],
+            this.slides[0]
+        );
+        this.slides.unshift(this.slides.pop());
+        this.decorizeSlides();
     }
 
     bindTriggers() {
@@ -44,17 +47,19 @@ export default class MiniSlider extends Slider {
     }
 
     init() {
-        this.container.style.cssText = `
+        try {
+            this.container.style.cssText = `
             display: flex;
             flex-wrap: wrap;
             overflow: hidden;
             align-items: flex-start;
         `;
-        this.bindTriggers();
-        this.decorizeSlides();
+            this.bindTriggers();
+            this.decorizeSlides();
 
-        if (this.autoplay) {
-            setInterval(() => this.nextSlide(), 5000);
-        }
+            if (this.autoplay) {
+                setInterval(() => this.nextSlide(), 5000);
+            }
+        } catch (e) {}
     }
 }

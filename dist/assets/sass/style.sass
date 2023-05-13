@@ -223,8 +223,13 @@ a
 		right: -25px
 		cursor: pointer
 .msg
-	display: none
 	margin-top: 20px
+	max-height: 0
+	overflow: hidden
+	transition: all .4s ease-out
+
+.active 
+	overflow: visible
 @import 'showup'
 @import 'difference'
 @import 'modules'

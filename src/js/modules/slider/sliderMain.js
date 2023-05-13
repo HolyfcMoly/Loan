@@ -29,6 +29,15 @@ export default class MainSlider extends Slider {
 
         this.slides.forEach((slide) => {
             slide.style.display = "none";
+
+            const slideLinks = slide.querySelector('a')
+    
+            if(slideLinks) {
+                slideLinks.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                })
+            }
         });
 
         this.slides[this.slideIndex - 1].style.display = "block";
@@ -59,7 +68,7 @@ export default class MainSlider extends Slider {
                     e.preventDefault()
                     this.plusSlides(-1)
                 })
-            })
+        })
     }
 
     render() {

@@ -53,7 +53,6 @@ export default class VideoPlayer {
             },
         });
 
-        console.log(this.player);
         this.overlay.style.display = "flex";
     }
 

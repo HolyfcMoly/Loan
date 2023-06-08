@@ -339,7 +339,6 @@ class VideoPlayer {
         onStateChange: this.onPlayerStateChange
       }
     });
-    console.log(this.player);
     this.overlay.style.display = "flex";
   }
   onPlayerStateChange(state) {
